@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HotelDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CenaPokoju">
+          <Key>
+            <PropertyRef Name="IdCenyPokoju" />
+          </Key>
+          <Property Name="IdCenyPokoju" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CenaPokoju" Type="money" />
+        </EntityType>
+        <EntityType Name="Klienci">
+          <Key>
+            <PropertyRef Name="IdKlienta" />
+          </Key>
+          <Property Name="IdKlienta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pesel" Type="nchar" MaxLength="11" />
+          <Property Name="NrKlienta" Type="nchar" MaxLength="9" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pobyty">
+          <Key>
+            <PropertyRef Name="IdPobytu" />
+          </Key>
+          <Property Name="IdPobytu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataPrzyjazdu" Type="date" Nullable="false" />
+          <Property Name="DataWyjazdu" Type="date" Nullable="false" />
+          <Property Name="IdPokoju" Type="int" />
+          <Property Name="IdPracownika" Type="int" />
+          <Property Name="IdUslugi" Type="int" />
+          <Property Name="IdKlienta" Type="int" />
+        </EntityType>
+        <EntityType Name="Pokoje">
+          <Key>
+            <PropertyRef Name="IdPokoju" />
+          </Key>
+          <Property Name="IdPokoju" Type="int" Nullable="false" />
+          <Property Name="IdTypu" Type="int" />
+          <Property Name="IdCenyPokoju" Type="int" />
+        </EntityType>
+        <EntityType Name="Pracownicy">
+          <Key>
+            <PropertyRef Name="IdPracownika" />
+          </Key>
+          <Property Name="IdPracownika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImiePracownika" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="NazwiskoPracownika" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PeselPracownika" Type="nchar" MaxLength="11" />
+          <Property Name="NrPracownika" Type="nchar" MaxLength="9" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypPokoju">
+          <Key>
+            <PropertyRef Name="IdTypu" />
+          </Key>
+          <Property Name="IdTypu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Typ" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Detale" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Uslugi">
+          <Key>
+            <PropertyRef Name="IdUslugi" />
+          </Key>
+          <Property Name="IdUslugi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usluga" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CenaUslugi" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Pobyty__IdKlient__36B12243">
+          <End Role="Klienci" Type="Self.Klienci" Multiplicity="0..1" />
+          <End Role="Pobyty" Type="Self.Pobyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klienci">
+              <PropertyRef Name="IdKlienta" />
+            </Principal>
+            <Dependent Role="Pobyty">
+              <PropertyRef Name="IdKlienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pobyty__IdPokoju__33D4B598">
+          <End Role="Pokoje" Type="Self.Pokoje" Multiplicity="0..1" />
+          <End Role="Pobyty" Type="Self.Pobyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokoje">
+              <PropertyRef Name="IdPokoju" />
+            </Principal>
+            <Dependent Role="Pobyty">
+              <PropertyRef Name="IdPokoju" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pobyty__IdPracow__34C8D9D1">
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="0..1" />
+          <End Role="Pobyty" Type="Self.Pobyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownicy">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="Pobyty">
+              <PropertyRef Name="IdPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pobyty__IdUslugi__35BCFE0A">
+          <End Role="Uslugi" Type="Self.Uslugi" Multiplicity="0..1" />
+          <End Role="Pobyty" Type="Self.Pobyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uslugi">
+              <PropertyRef Name="IdUslugi" />
+            </Principal>
+            <Dependent Role="Pobyty">
+              <PropertyRef Name="IdUslugi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pokoje__IdCenyPo__2C3393D0">
+          <End Role="CenaPokoju" Type="Self.CenaPokoju" Multiplicity="0..1" />
+          <End Role="Pokoje" Type="Self.Pokoje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CenaPokoju">
+              <PropertyRef Name="IdCenyPokoju" />
+            </Principal>
+            <Dependent Role="Pokoje">
+              <PropertyRef Name="IdCenyPokoju" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pokoje__IdTypu__2B3F6F97">
+          <End Role="TypPokoju" Type="Self.TypPokoju" Multiplicity="0..1" />
+          <End Role="Pokoje" Type="Self.Pokoje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypPokoju">
+              <PropertyRef Name="IdTypu" />
+            </Principal>
+            <Dependent Role="Pokoje">
+              <PropertyRef Name="IdTypu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HotelDbModelStoreContainer">
+          <EntitySet Name="CenaPokoju" EntityType="Self.CenaPokoju" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klienci" EntityType="Self.Klienci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pobyty" EntityType="Self.Pobyty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pokoje" EntityType="Self.Pokoje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pracownicy" EntityType="Self.Pracownicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypPokoju" EntityType="Self.TypPokoju" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uslugi" EntityType="Self.Uslugi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Pobyty__IdKlient__36B12243" Association="Self.FK__Pobyty__IdKlient__36B12243">
+            <End Role="Klienci" EntitySet="Klienci" />
+            <End Role="Pobyty" EntitySet="Pobyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pobyty__IdPokoju__33D4B598" Association="Self.FK__Pobyty__IdPokoju__33D4B598">
+            <End Role="Pokoje" EntitySet="Pokoje" />
+            <End Role="Pobyty" EntitySet="Pobyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pobyty__IdPracow__34C8D9D1" Association="Self.FK__Pobyty__IdPracow__34C8D9D1">
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+            <End Role="Pobyty" EntitySet="Pobyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pobyty__IdUslugi__35BCFE0A" Association="Self.FK__Pobyty__IdUslugi__35BCFE0A">
+            <End Role="Uslugi" EntitySet="Uslugi" />
+            <End Role="Pobyty" EntitySet="Pobyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pokoje__IdCenyPo__2C3393D0" Association="Self.FK__Pokoje__IdCenyPo__2C3393D0">
+            <End Role="CenaPokoju" EntitySet="CenaPokoju" />
+            <End Role="Pokoje" EntitySet="Pokoje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pokoje__IdTypu__2B3F6F97" Association="Self.FK__Pokoje__IdTypu__2B3F6F97">
+            <End Role="TypPokoju" EntitySet="TypPokoju" />
+            <End Role="Pokoje" EntitySet="Pokoje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HotelDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CenaPokoju">
+          <Key>
+            <PropertyRef Name="IdCenyPokoju" />
+          </Key>
+          <Property Name="IdCenyPokoju" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CenaPokoju1" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Pokoje" Relationship="Self.FK__Pokoje__IdCenyPo__2C3393D0" FromRole="CenaPokoju" ToRole="Pokoje" />
+        </EntityType>
+        <EntityType Name="Klienci">
+          <Key>
+            <PropertyRef Name="IdKlienta" />
+          </Key>
+          <Property Name="IdKlienta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pesel" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="NrKlienta" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pobyty" Relationship="Self.FK__Pobyty__IdKlient__36B12243" FromRole="Klienci" ToRole="Pobyty" />
+        </EntityType>
+        <EntityType Name="Pobyty">
+          <Key>
+            <PropertyRef Name="IdPobytu" />
+          </Key>
+          <Property Name="IdPobytu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataPrzyjazdu" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataWyjazdu" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdPokoju" Type="Int32" />
+          <Property Name="IdPracownika" Type="Int32" />
+          <Property Name="IdUslugi" Type="Int32" />
+          <Property Name="IdKlienta" Type="Int32" />
+          <NavigationProperty Name="Klienci" Relationship="Self.FK__Pobyty__IdKlient__36B12243" FromRole="Pobyty" ToRole="Klienci" />
+          <NavigationProperty Name="Pokoje" Relationship="Self.FK__Pobyty__IdPokoju__33D4B598" FromRole="Pobyty" ToRole="Pokoje" />
+          <NavigationProperty Name="Pracownicy" Relationship="Self.FK__Pobyty__IdPracow__34C8D9D1" FromRole="Pobyty" ToRole="Pracownicy" />
+          <NavigationProperty Name="Uslugi" Relationship="Self.FK__Pobyty__IdUslugi__35BCFE0A" FromRole="Pobyty" ToRole="Uslugi" />
+        </EntityType>
+        <EntityType Name="Pokoje">
+          <Key>
+            <PropertyRef Name="IdPokoju" />
+          </Key>
+          <Property Name="IdPokoju" Type="Int32" Nullable="false" />
+          <Property Name="IdTypu" Type="Int32" />
+          <Property Name="IdCenyPokoju" Type="Int32" />
+          <NavigationProperty Name="CenaPokoju" Relationship="Self.FK__Pokoje__IdCenyPo__2C3393D0" FromRole="Pokoje" ToRole="CenaPokoju" />
+          <NavigationProperty Name="Pobyty" Relationship="Self.FK__Pobyty__IdPokoju__33D4B598" FromRole="Pokoje" ToRole="Pobyty" />
+          <NavigationProperty Name="TypPokoju" Relationship="Self.FK__Pokoje__IdTypu__2B3F6F97" FromRole="Pokoje" ToRole="TypPokoju" />
+        </EntityType>
+        <EntityType Name="Pracownicy">
+          <Key>
+            <PropertyRef Name="IdPracownika" />
+          </Key>
+          <Property Name="IdPracownika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImiePracownika" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NazwiskoPracownika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PeselPracownika" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="NrPracownika" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pobyty" Relationship="Self.FK__Pobyty__IdPracow__34C8D9D1" FromRole="Pracownicy" ToRole="Pobyty" />
+        </EntityType>
+        <EntityType Name="TypPokoju">
+          <Key>
+            <PropertyRef Name="IdTypu" />
+          </Key>
+          <Property Name="IdTypu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Typ" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Detale" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pokoje" Relationship="Self.FK__Pokoje__IdTypu__2B3F6F97" FromRole="TypPokoju" ToRole="Pokoje" />
+        </EntityType>
+        <EntityType Name="Uslugi">
+          <Key>
+            <PropertyRef Name="IdUslugi" />
+          </Key>
+          <Property Name="IdUslugi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usluga" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CenaUslugi" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Pobyty" Relationship="Self.FK__Pobyty__IdUslugi__35BCFE0A" FromRole="Uslugi" ToRole="Pobyty" />
+        </EntityType>
+        <Association Name="FK__Pokoje__IdCenyPo__2C3393D0">
+          <End Role="CenaPokoju" Type="Self.CenaPokoju" Multiplicity="0..1" />
+          <End Role="Pokoje" Type="Self.Pokoje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CenaPokoju">
+              <PropertyRef Name="IdCenyPokoju" />
+            </Principal>
+            <Dependent Role="Pokoje">
+              <PropertyRef Name="IdCenyPokoju" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pobyty__IdKlient__36B12243">
+          <End Role="Klienci" Type="Self.Klienci" Multiplicity="0..1" />
+          <End Role="Pobyty" Type="Self.Pobyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klienci">
+              <PropertyRef Name="IdKlienta" />
+            </Principal>
+            <Dependent Role="Pobyty">
+              <PropertyRef Name="IdKlienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pobyty__IdPokoju__33D4B598">
+          <End Role="Pokoje" Type="Self.Pokoje" Multiplicity="0..1" />
+          <End Role="Pobyty" Type="Self.Pobyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokoje">
+              <PropertyRef Name="IdPokoju" />
+            </Principal>
+            <Dependent Role="Pobyty">
+              <PropertyRef Name="IdPokoju" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pobyty__IdPracow__34C8D9D1">
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="0..1" />
+          <End Role="Pobyty" Type="Self.Pobyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownicy">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="Pobyty">
+              <PropertyRef Name="IdPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pobyty__IdUslugi__35BCFE0A">
+          <End Role="Uslugi" Type="Self.Uslugi" Multiplicity="0..1" />
+          <End Role="Pobyty" Type="Self.Pobyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uslugi">
+              <PropertyRef Name="IdUslugi" />
+            </Principal>
+            <Dependent Role="Pobyty">
+              <PropertyRef Name="IdUslugi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pokoje__IdTypu__2B3F6F97">
+          <End Role="TypPokoju" Type="Self.TypPokoju" Multiplicity="0..1" />
+          <End Role="Pokoje" Type="Self.Pokoje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypPokoju">
+              <PropertyRef Name="IdTypu" />
+            </Principal>
+            <Dependent Role="Pokoje">
+              <PropertyRef Name="IdTypu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HotelDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CenaPokoju" EntityType="Self.CenaPokoju" />
+          <EntitySet Name="Klienci" EntityType="Self.Klienci" />
+          <EntitySet Name="Pobyty" EntityType="Self.Pobyty" />
+          <EntitySet Name="Pokoje" EntityType="Self.Pokoje" />
+          <EntitySet Name="Pracownicy" EntityType="Self.Pracownicy" />
+          <EntitySet Name="TypPokoju" EntityType="Self.TypPokoju" />
+          <EntitySet Name="Uslugi" EntityType="Self.Uslugi" />
+          <AssociationSet Name="FK__Pokoje__IdCenyPo__2C3393D0" Association="Self.FK__Pokoje__IdCenyPo__2C3393D0">
+            <End Role="CenaPokoju" EntitySet="CenaPokoju" />
+            <End Role="Pokoje" EntitySet="Pokoje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pobyty__IdKlient__36B12243" Association="Self.FK__Pobyty__IdKlient__36B12243">
+            <End Role="Klienci" EntitySet="Klienci" />
+            <End Role="Pobyty" EntitySet="Pobyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pobyty__IdPokoju__33D4B598" Association="Self.FK__Pobyty__IdPokoju__33D4B598">
+            <End Role="Pokoje" EntitySet="Pokoje" />
+            <End Role="Pobyty" EntitySet="Pobyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pobyty__IdPracow__34C8D9D1" Association="Self.FK__Pobyty__IdPracow__34C8D9D1">
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+            <End Role="Pobyty" EntitySet="Pobyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pobyty__IdUslugi__35BCFE0A" Association="Self.FK__Pobyty__IdUslugi__35BCFE0A">
+            <End Role="Uslugi" EntitySet="Uslugi" />
+            <End Role="Pobyty" EntitySet="Pobyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pokoje__IdTypu__2B3F6F97" Association="Self.FK__Pokoje__IdTypu__2B3F6F97">
+            <End Role="TypPokoju" EntitySet="TypPokoju" />
+            <End Role="Pokoje" EntitySet="Pokoje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HotelDbModelStoreContainer" CdmEntityContainer="HotelDbEntities">
+          <EntitySetMapping Name="CenaPokoju">
+            <EntityTypeMapping TypeName="HotelDbModel.CenaPokoju">
+              <MappingFragment StoreEntitySet="CenaPokoju">
+                <ScalarProperty Name="IdCenyPokoju" ColumnName="IdCenyPokoju" />
+                <ScalarProperty Name="CenaPokoju1" ColumnName="CenaPokoju" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klienci">
+            <EntityTypeMapping TypeName="HotelDbModel.Klienci">
+              <MappingFragment StoreEntitySet="Klienci">
+                <ScalarProperty Name="IdKlienta" ColumnName="IdKlienta" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Pesel" ColumnName="Pesel" />
+                <ScalarProperty Name="NrKlienta" ColumnName="NrKlienta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pobyty">
+            <EntityTypeMapping TypeName="HotelDbModel.Pobyty">
+              <MappingFragment StoreEntitySet="Pobyty">
+                <ScalarProperty Name="IdPobytu" ColumnName="IdPobytu" />
+                <ScalarProperty Name="DataPrzyjazdu" ColumnName="DataPrzyjazdu" />
+                <ScalarProperty Name="DataWyjazdu" ColumnName="DataWyjazdu" />
+                <ScalarProperty Name="IdPokoju" ColumnName="IdPokoju" />
+                <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
+                <ScalarProperty Name="IdUslugi" ColumnName="IdUslugi" />
+                <ScalarProperty Name="IdKlienta" ColumnName="IdKlienta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pokoje">
+            <EntityTypeMapping TypeName="HotelDbModel.Pokoje">
+              <MappingFragment StoreEntitySet="Pokoje">
+                <ScalarProperty Name="IdPokoju" ColumnName="IdPokoju" />
+                <ScalarProperty Name="IdTypu" ColumnName="IdTypu" />
+                <ScalarProperty Name="IdCenyPokoju" ColumnName="IdCenyPokoju" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pracownicy">
+            <EntityTypeMapping TypeName="HotelDbModel.Pracownicy">
+              <MappingFragment StoreEntitySet="Pracownicy">
+                <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
+                <ScalarProperty Name="ImiePracownika" ColumnName="ImiePracownika" />
+                <ScalarProperty Name="NazwiskoPracownika" ColumnName="NazwiskoPracownika" />
+                <ScalarProperty Name="PeselPracownika" ColumnName="PeselPracownika" />
+                <ScalarProperty Name="NrPracownika" ColumnName="NrPracownika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypPokoju">
+            <EntityTypeMapping TypeName="HotelDbModel.TypPokoju">
+              <MappingFragment StoreEntitySet="TypPokoju">
+                <ScalarProperty Name="IdTypu" ColumnName="IdTypu" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="Detale" ColumnName="Detale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uslugi">
+            <EntityTypeMapping TypeName="HotelDbModel.Uslugi">
+              <MappingFragment StoreEntitySet="Uslugi">
+                <ScalarProperty Name="IdUslugi" ColumnName="IdUslugi" />
+                <ScalarProperty Name="Usluga" ColumnName="Usluga" />
+                <ScalarProperty Name="CenaUslugi" ColumnName="CenaUslugi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
