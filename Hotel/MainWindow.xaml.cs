@@ -10,19 +10,32 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Hotel
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Interaction logic for ListaRezerwacji.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ListaRezerwacji : Window
     {
-        public MainWindow()
+        HotelDbEntities context = new HotelDbEntities();
+        CollectionViewSource pobytyViewSource;
+        public ListaRezerwacji()
         {
             InitializeComponent();
+            pobytyViewSource = ((CollectionViewSource)(FindResource("pobytyViewSource")));           
+            DataContext = this;
+            
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource pobytyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("pobytyViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // pobytyViewSource.Source = [generic data source]
         }
     }
 }

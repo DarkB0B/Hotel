@@ -78,6 +78,9 @@
     <Compile Include="Klienci.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="mainwindow.xaml.cs">
+      <DependentUpon>mainwindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pobyty.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
@@ -87,15 +90,18 @@
     <Compile Include="Pracownicy.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Rezerwacje.xaml.cs">
+      <DependentUpon>Rezerwacje.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TypPokoju.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
     <Compile Include="Uslugi.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="mainwindow.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -111,10 +117,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Hotel_model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Rezerwacje.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -142,6 +148,8 @@
       <DependentUpon>Hotel_model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Klienci.datasource" />
+    <None Include="Properties\DataSources\Pobyty.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
