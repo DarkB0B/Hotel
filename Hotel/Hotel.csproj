@@ -78,8 +78,11 @@
     <Compile Include="Klienci.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
-    <Compile Include="mainwindow.xaml.cs">
-      <DependentUpon>mainwindow.xaml</DependentUpon>
+    <Compile Include="ListaRezerwacji.xaml.cs">
+      <DependentUpon>ListaRezerwacji.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pobyty.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
@@ -99,7 +102,7 @@
     <Compile Include="Uslugi.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
-    <Page Include="mainwindow.xaml">
+    <Page Include="ListaRezerwacji.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,6 +120,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Hotel_model.edmx</DependentUpon>
     </Compile>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Rezerwacje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

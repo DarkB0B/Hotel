@@ -16,29 +16,29 @@ using System.Data.Entity;
 namespace Hotel
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ListaRezerwacji.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ListaRezerwacji : Window
     {
         HotelDbEntities context = new HotelDbEntities();
         CollectionViewSource klienciViewSource;
         CollectionViewSource pobytyViewSource;
-        public MainWindow()
+        public ListaRezerwacji()
         {
             InitializeComponent();
-            pobytyViewSource = ((CollectionViewSource)(FindResource("pobytyViewSource")));
+            pobytyViewSource = ((CollectionViewSource)(FindResource("pobytyViewSource")));           
             klienciViewSource = ((CollectionViewSource)(FindResource("klienciViewSource")));
             DataContext = this;
+            
 
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            context.Pobyty.Load();
-            pobytyViewSource.Source = context.Pobyty.Local;
-            
+
+            System.Windows.Data.CollectionViewSource pobytyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("pobytyViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
-            // klienciViewSource.Source = [generic data source]
+            // pobytyViewSource.Source = [generic data source]
         }
     }
 }
