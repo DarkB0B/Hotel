@@ -34,11 +34,25 @@ namespace Hotel
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
             context.Pobyty.Load();
-            pobytyViewSource.Source = context.Pobyty.Local;
+           pobytyViewSource.Source = context.Pobyty.Local;
             
             // Load data by setting the CollectionViewSource.Source property:
-            // klienciViewSource.Source = [generic data source]
+             klienciViewSource.Source = context.Klienci.Local;
+        }
+        private void PreviousCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            
+            klienciViewSource.View.MoveCurrentToPrevious();
+        }
+
+        private void NextCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            context.Klienci.Load();
+            klienciViewSource.Source = context.Klienci.Local;
+            klienciViewSource.View.MoveCurrentToNext();
+            
         }
     }
 }

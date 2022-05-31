@@ -9,7 +9,11 @@
     <Window.Resources>
         <CollectionViewSource x:Key="pobytyViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Pobyty}, CreateList=True}"/>
         <CollectionViewSource x:Key="klienciViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Klienci}, CreateList=True}"/>
+        
+        
     </Window.Resources>
+    
+
     <Grid DataContext="{StaticResource klienciViewSource}">
         <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="502,58,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -23,8 +27,11 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+
+
         </Grid>
-        <ListView x:Name="pobytyListView" ItemsSource="{Binding Source={StaticResource pobytyViewSource}}" Margin="10,10,205,271" SelectionMode="Single">
+        
+        <ListView x:Name="pobytyListView" ItemsSource="{Binding Source={StaticResource pobytyViewSource}}" Margin="10,10,78,286" SelectionMode="Single">
             <ListView.ItemContainerStyle>
                 <Style>
                     <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
@@ -85,6 +92,33 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Grid x:Name="grid1" DataContext="{StaticResource pobytyViewSource}" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Id Klienta:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="idKlientaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Klienci.IdKlienta, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Imie:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="imieTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Klienci.Imie, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Nazwisko:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="nazwiskoTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Klienci.Nazwisko, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Nr Klienta:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="nrKlientaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Klienci.NrKlienta, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Pesel:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="peselTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Klienci.Pesel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            
+        </Grid>
+        <StackPanel Orientation="Horizontal" Margin="63,314,661,0" Height="29" VerticalAlignment="Top" Background="Gainsboro" DataContext="{StaticResource pobytyViewSource}">
+            
+        </StackPanel>
 
     </Grid>
 </Window>
