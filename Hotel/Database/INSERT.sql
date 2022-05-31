@@ -1,4 +1,4 @@
-Use Hotel;
+Use HotelDb;
 
 --Za³o¿enia--
 
