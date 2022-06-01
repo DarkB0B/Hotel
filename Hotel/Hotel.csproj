@@ -95,6 +95,9 @@
     <Compile Include="Klienci.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Klienciwin.xaml.cs">
+      <DependentUpon>Klienciwin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,9 @@
     </Compile>
     <Compile Include="Pracownicy.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pracownicywin.xaml.cs">
+      <DependentUpon>Pracownicywin.xaml</DependentUpon>
     </Compile>
     <Compile Include="TypPokoju.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
@@ -130,11 +136,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Hotel_model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Uslugiwin.xaml.cs">
+      <DependentUpon>Uslugiwin.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Klienciwin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pokojewin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pracownicywin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Uslugiwin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

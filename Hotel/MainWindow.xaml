@@ -37,8 +37,9 @@
             <Label x:Name="Pobyty" Content="" HorizontalAlignment="Center" Margin="331,-48,157,0" VerticalAlignment="Top" Width="304" FontSize="20" RenderTransformOrigin="0.521,0.594"/>
             <Button Content="Dodaj" HorizontalAlignment="Left" Margin="27,233,0,0" VerticalAlignment="Top" Width="75"/>
             <Button x:Name="GoToPokoje" Content="Pokoje" Click="GoToPokoje_Click" HorizontalAlignment="Left" Margin="615,50,0,-48" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="483,50,0,-46" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="345,50,0,-44" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="GoToKlienci" Content="Klienci" Click="GoToKlienci_Click" HorizontalAlignment="Left" Margin="483,50,0,-46" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="GoToPracownicy" Content="Pracownicy" Click="GoToPracownicy_Click" HorizontalAlignment="Left" Margin="345,50,0,-44" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="GoToUslugi" Content="Usługi" Click="GoToUslugi_Click" HorizontalAlignment="Left" Margin="215,50,0,-42" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
 
         </Grid>
 

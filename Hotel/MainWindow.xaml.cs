@@ -103,8 +103,23 @@ namespace Hotel
             Pokojewin pokojewin = new Pokojewin();
             pokojewin.ShowDialog();
         }
+        private void GoToKlienci_Click(object sender, RoutedEventArgs e)
+        {
+            Klienciwin klienciwin = new Klienciwin();
+            klienciwin.ShowDialog();
+        }
+        private void GoToPracownicy_Click(object sender, RoutedEventArgs e)
+        {
+            Pracownicywin pracownicywin = new Pracownicywin();
+            pracownicywin.ShowDialog();
+        }
+        private void GoToUslugi_Click(object sender, RoutedEventArgs e)
+        {
+            Uslugiwin uslugiwin = new Uslugiwin();
+            uslugiwin.ShowDialog();
+        }
 
-            private void grdPobyty_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void grdPobyty_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
         }
