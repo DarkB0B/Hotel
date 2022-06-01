@@ -104,6 +104,9 @@
     <Compile Include="Pokoje.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pokojewin.xaml.cs">
+      <DependentUpon>Pokojewin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pracownicy.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <DependentUpon>Hotel_model.edmx</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pokojewin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,7 +18,7 @@
 
 
     <Grid DataContext="{StaticResource pobytyViewSource}">
-        <Grid Margin="0,61,0,20">
+        <Grid Margin="0,71,0,10">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -28,19 +28,17 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <DataGrid Name="grdPobyty" HorizontalAlignment="Left" Height="328" VerticalAlignment="Top" Width="774" SelectionChanged="grdPobyty_SelectionChanged" Margin="10,10,0,0">
-                <DataGridTemplateColumn Width="70" Header="Delete">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Width="70" Click="DeleteButton_Click">Delete</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+            <DataGrid Name="grdPobyty" HorizontalAlignment="Left" Height="322" VerticalAlignment="Top" Width="654" SelectionChanged="grdPobyty_SelectionChanged" Margin="130,16,0,0">
+
             </DataGrid>
-            <Button Content="Aktualne Pobyty" Click="AktualnePobyty_Click" HorizontalAlignment="Left" Margin="43,23,0,-10" Grid.Row="4" VerticalAlignment="Top" Width="103"/>
-            <Button Content="Historia Pobytów" Click="HistoriaPobytow_Click" HorizontalAlignment="Left" Margin="177,23,0,-8" Grid.Row="4" VerticalAlignment="Top" Width="110"/>
-            <Button Content="Rezerwacje" Click="Rezerwacje_Click" HorizontalAlignment="Left" Margin="321,22,0,-5" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
-            <Label x:Name="Pobyty" Content="" HorizontalAlignment="Center" Margin="315,-46,173,0" VerticalAlignment="Top" Width="304" FontSize="20" RenderTransformOrigin="0.521,0.594"/>
+            <Button Content="Aktualne Pobyty" Click="AktualnePobyty_Click" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" Width="110" FontSize="14" Height="24"/>
+            <Button Content="Historia Pobytów" Click="HistoriaPobytow_Click" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Width="110" FontSize="14" Height="24"/>
+            <Button Content="Rezerwacje" Click="Rezerwacje_Click" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="110" FontSize="14" Height="24"/>
+            <Label x:Name="Pobyty" Content="" HorizontalAlignment="Center" Margin="331,-48,157,0" VerticalAlignment="Top" Width="304" FontSize="20" RenderTransformOrigin="0.521,0.594"/>
+            <Button Content="Dodaj" HorizontalAlignment="Left" Margin="27,233,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="GoToPokoje" Content="Pokoje" Click="GoToPokoje_Click" HorizontalAlignment="Left" Margin="615,50,0,-48" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="483,50,0,-46" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="345,50,0,-44" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
 
         </Grid>
 

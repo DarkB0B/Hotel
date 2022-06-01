@@ -60,7 +60,7 @@ namespace Hotel
                 CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu' from Pobyty m  inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where  DataWyjazdu > GETDATE() and DataPrzyjazdu > GETDATE()";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Pokoje");
+                DataTable dt = new DataTable("Pobyty");
                 sda.Fill(dt);
                 grdPobyty.ItemsSource = dt.DefaultView;
             }
@@ -76,7 +76,7 @@ namespace Hotel
                 CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu' from Pobyty m  inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where DataPrzyjazdu < GETDATE()";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Pokoje");
+                DataTable dt = new DataTable("Pobyty");
                 sda.Fill(dt);
                 grdPobyty.ItemsSource = dt.DefaultView;
             }
@@ -92,14 +92,19 @@ namespace Hotel
                 CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu' from Pobyty m  inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where  DataWyjazdu > GETDATE() and DataPrzyjazdu < GETDATE()";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Pokoje");
+                DataTable dt = new DataTable("Pobyty");
                 sda.Fill(dt);
                 grdPobyty.ItemsSource = dt.DefaultView;
             }
             Pobyty.Content = "AktualnePobyty";
         }
-        
-        private void grdPobyty_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void GoToPokoje_Click(object sender, RoutedEventArgs e)
+        {
+            Pokojewin pokojewin = new Pokojewin();
+            pokojewin.ShowDialog();
+        }
+
+            private void grdPobyty_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
         }
