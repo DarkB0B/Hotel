@@ -26,6 +26,18 @@ namespace Hotel
         public Klienciwin()
         {
             InitializeComponent();
+            string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+            string CmdString = string.Empty;
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                CmdString = "select distinct k.IdKlienta as 'Id Klienta', k.Imie as 'Imię Klienta', k.Nazwisko as 'Nazwisko Klienta', k.Pesel as 'PESEL Klienta' from Klienci k";
+                SqlCommand cmd = new SqlCommand(CmdString, con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Klienci");
+                sda.Fill(dt);
+                grdKlienci.ItemsSource = dt.DefaultView;
+                Klienci_L.Content = "Wszyscy Klienci";
+            }
         }
 
         private void WszyscyKlienci_Click(object sender, RoutedEventArgs e)

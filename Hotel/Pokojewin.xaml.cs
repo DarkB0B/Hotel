@@ -27,6 +27,18 @@ namespace Hotel
         public Pokojewin()
         {
             InitializeComponent();
+            string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+            string CmdString = string.Empty;
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                CmdString = "select p.IdPokoju as 'Nr Pokoju',t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc'  from Pobyty m inner join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju";
+                SqlCommand cmd = new SqlCommand(CmdString, con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Pokoje");
+                sda.Fill(dt);
+                grdPokoje.ItemsSource = dt.DefaultView;
+                Pokoje_L.Content = "Wszystkie Pokoje";
+            }
         }
 
         private void ZajetePokoje_Click(object sender, RoutedEventArgs e)
