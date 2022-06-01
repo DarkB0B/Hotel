@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Pobyty" Height="600" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
+
+
+
         <CollectionViewSource x:Key="pobytyViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Pobyty}, CreateList=True}"/>
-        <CollectionViewSource x:Key="klienciViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Klienci}, CreateList=True}"/>
-        
-        
+
+
+
     </Window.Resources>
-    
 
-    <Grid DataContext="{StaticResource klienciViewSource}">
-        <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="502,58,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+
+    <Grid DataContext="{StaticResource pobytyViewSource}">
+        <Grid Margin="0,61,0,20">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -28,97 +28,22 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
+            <DataGrid Name="grdPobyty" HorizontalAlignment="Left" Height="328" VerticalAlignment="Top" Width="774" SelectionChanged="grdPobyty_SelectionChanged" Margin="10,10,0,0">
+                <DataGridTemplateColumn Width="70" Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="70" Click="DeleteButton_Click">Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid>
+            <Button Content="Aktualne Pobyty" Click="AktualnePobyty_Click" HorizontalAlignment="Left" Margin="43,23,0,-10" Grid.Row="4" VerticalAlignment="Top" Width="103"/>
+            <Button Content="Historia Pobytów" Click="HistoriaPobytow_Click" HorizontalAlignment="Left" Margin="177,23,0,-8" Grid.Row="4" VerticalAlignment="Top" Width="110"/>
+            <Button Content="Rezerwacje" Click="Rezerwacje_Click" HorizontalAlignment="Left" Margin="321,22,0,-5" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
+            <Label x:Name="Pobyty" Content="" HorizontalAlignment="Center" Margin="315,-46,173,0" VerticalAlignment="Top" Width="304" FontSize="20" RenderTransformOrigin="0.521,0.594"/>
 
         </Grid>
-        
-        <ListView x:Name="pobytyListView" ItemsSource="{Binding Source={StaticResource pobytyViewSource}}" Margin="10,10,78,286" SelectionMode="Single">
-            <ListView.ItemContainerStyle>
-                <Style>
-                    <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn x:Name="dataPrzyjazduColumn" Header="Data Przyjazdu" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <DatePicker Margin="6,-1,-6,-1" SelectedDate="{Binding DataPrzyjazdu, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="dataWyjazduColumn" Header="Data Wyjazdu" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <DatePicker Margin="-6,-1" SelectedDate="{Binding DataWyjazdu, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="idKlientaColumn" Header="Id Klienta" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding IdKlienta, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="idPobytuColumn" Header="Id Pobytu" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding IdPobytu, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="idPokojuColumn" Header="Id Pokoju" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding IdPokoju, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="idPracownikaColumn" Header="Id Pracownika" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding IdPracownika, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="idUslugiColumn" Header="Id Uslugi" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding IdUslugi, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Grid x:Name="grid1" DataContext="{StaticResource pobytyViewSource}" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label Content="Id Klienta:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="idKlientaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Klienci.IdKlienta, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Imie:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="imieTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Klienci.Imie, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Nazwisko:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="nazwiskoTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Klienci.Nazwisko, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Nr Klienta:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="nrKlientaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Klienci.NrKlienta, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Pesel:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="peselTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Klienci.Pesel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            
-        </Grid>
-        <StackPanel Orientation="Horizontal" Margin="63,314,661,0" Height="29" VerticalAlignment="Top" Background="Gainsboro" DataContext="{StaticResource pobytyViewSource}">
-            
-        </StackPanel>
+
 
     </Grid>
 </Window>
