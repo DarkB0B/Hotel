@@ -26,7 +26,7 @@ namespace Hotel
     {
         public Uslugiwin()
         {
-            InitializeComponent();
+            
             InitializeComponent();
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
@@ -39,6 +39,21 @@ namespace Hotel
                 sda.Fill(dt);
                 grdUslugi.ItemsSource = dt.DefaultView;
             }
+        }
+
+        private void GoToDodajUsluge_Click(object sender, RoutedEventArgs e)
+        {
+            
+                DodajUslugewin dodajUslugewin= new DodajUslugewin();
+            dodajUslugewin.ShowDialog();
+            
+        }
+        private void UsunUsluge_Click(object sender, RoutedEventArgs e)
+        {
+
+            DodajUslugewin dodajUslugewin = new DodajUslugewin();
+            dodajUslugewin.ShowDialog();
+
         }
     }
 }

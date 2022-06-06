@@ -87,6 +87,12 @@
     <Compile Include="CenaPokoju.cs">
       <DependentUpon>Hotel_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DodajPobytwin.xaml.cs">
+      <DependentUpon>DodajPobytwin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DodajUslugewin.xaml.cs">
+      <DependentUpon>DodajUslugewin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Hotel_model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -139,6 +145,14 @@
     <Compile Include="Uslugiwin.xaml.cs">
       <DependentUpon>Uslugiwin.xaml</DependentUpon>
     </Compile>
+    <Page Include="DodajPobytwin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajUslugewin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Klienciwin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,6 +202,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Klienci.datasource" />
     <None Include="Properties\DataSources\Pobyty.datasource" />
+    <None Include="Properties\DataSources\Uslugi.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

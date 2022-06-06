@@ -130,7 +130,11 @@ namespace Hotel
             Uslugiwin uslugiwin = new Uslugiwin();
             uslugiwin.ShowDialog();
         }
-
+        private void GoToPobyty_Click(object sender, RoutedEventArgs e)
+        {
+            DodajPobytwin dodajPobytwin = new DodajPobytwin();
+            dodajPobytwin.ShowDialog();
+        }
         private void grdPobyty_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             

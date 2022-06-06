@@ -18,8 +18,8 @@
             </DataGrid.RenderTransform>
         </DataGrid>
         <Label  Content="Usługi" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="3.043,1.277" Margin="115,10,0,0" FontSize="18"/>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Usuń" HorizontalAlignment="Left" Margin="207,19,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="GoToDodajUsluge" Content="Dodaj" Click="GoToDodajUsluge_Click" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="UsunUsluge" Content="Usuń" Click="UsunUsluge_Click"  HorizontalAlignment="Left" Margin="207,19,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

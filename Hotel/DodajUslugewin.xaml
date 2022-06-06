@@ -1,0 +1,31 @@
+﻿<Window x:Class="Hotel.DodajUslugewin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel"
+        mc:Ignorable="d"
+        Title="DodajUslugewin" Height="165.755" Width="247.697" Loaded="Window_Loaded_1">
+    <Window.Resources>
+        <CollectionViewSource x:Key="uslugiViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Uslugi}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid Margin="0,0,2,5">
+        <Grid x:Name="grid1" DataContext="{StaticResource uslugiViewSource}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Cena Uslugi:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="cenaUslugiTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding CenaUslugi, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Usluga:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="uslugaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Usluga, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        </Grid>
+        <Button Content="Dodaj" Click="Dodaj_Click" HorizontalAlignment="Left" Margin="80,100,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>
