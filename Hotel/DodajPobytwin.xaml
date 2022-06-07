@@ -45,7 +45,7 @@
             <Label Content="Pesel:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
             <TextBox x:Name="peselTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding Klienci.Pesel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Usluga:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <ComboBox x:Name="uslugaComboBox" Grid.Column="1" DisplayMemberPath="Uslugi.Usluga" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="8" VerticalAlignment="Center" Width="120">
+            <ComboBox x:Name="uslugaComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto"  Margin="3,0,0,5" Grid.Row="8" VerticalAlignment="Bottom" Width="120" SelectionChanged="uslugaComboBox_SelectionChanged">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>

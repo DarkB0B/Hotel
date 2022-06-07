@@ -26,14 +26,8 @@ namespace Hotel
     public partial class MainWindow : Window
     {
         HotelDbEntities context = new HotelDbEntities();
-        
-        CollectionViewSource pobytyViewSource;
-        public MainWindow()
+        public void refresh()
         {
-            InitializeComponent();
-            pobytyViewSource = ((CollectionViewSource)(FindResource("pobytyViewSource")));
-            //klienciViewSource = ((CollectionViewSource)(FindResource("klienciViewSource")));
-            DataContext = this;
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
@@ -46,6 +40,15 @@ namespace Hotel
                 grdPobyty.ItemsSource = dt.DefaultView;
             }
             Pobyty.Content = "AktualnePobyty";
+        }
+        CollectionViewSource pobytyViewSource;
+        public MainWindow()
+        {
+            InitializeComponent();
+            pobytyViewSource = ((CollectionViewSource)(FindResource("pobytyViewSource")));
+            //klienciViewSource = ((CollectionViewSource)(FindResource("klienciViewSource")));
+            DataContext = this;
+            refresh();
 
         }
 
@@ -134,6 +137,7 @@ namespace Hotel
         {
             DodajPobytwin dodajPobytwin = new DodajPobytwin();
             dodajPobytwin.ShowDialog();
+            refresh();
         }
         private void grdPobyty_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

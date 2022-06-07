@@ -48,6 +48,7 @@ namespace Hotel
                 Uslugi usluga = new Uslugi() { IdUslugi = idUslugi, CenaUslugi = cenaUslugi, Usluga = uslugaTextBox.Text };
                 context.Uslugi.Add(usluga);
                 context.SaveChanges();
+                
                 this.Close();
             }
             catch(Exception exception)

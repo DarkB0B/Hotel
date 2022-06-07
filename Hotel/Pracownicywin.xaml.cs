@@ -24,9 +24,8 @@ namespace Hotel
     /// </summary>
     public partial class Pracownicywin : Window
     {
-        public Pracownicywin()
+        public void refresh()
         {
-            InitializeComponent();
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
@@ -39,6 +38,21 @@ namespace Hotel
                 grdPracownicy.ItemsSource = dt.DefaultView;
             }
         }
-        
+        public Pracownicywin()
+        {
+            InitializeComponent();
+            refresh();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+                DodajPracownikawin dodajPracownikawin = new DodajPracownikawin();
+                dodajPracownikawin.ShowDialog();
+                refresh();
+
+            
+        }
     }
 }

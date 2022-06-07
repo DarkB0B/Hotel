@@ -31,7 +31,7 @@ namespace Hotel
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
             {
-                CmdString = "select p.IdPokoju as 'Nr Pokoju',t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc'  from Pobyty m inner join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju";
+                CmdString = "select distinct p.IdPokoju as 'Nr Pokoju',t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc'  from Pobyty m inner join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Pokoje");
@@ -47,7 +47,7 @@ namespace Hotel
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
             {
-                CmdString = "select p.IdPokoju as 'Nr Pokoju', t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc', m.DataPrzyjazdu as 'Zajęty od', m.DataWyjazdu as 'Zajęty do'  from Pobyty m inner join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju where DataWyjazdu > GETDATE()";
+                CmdString = "select distinct p.IdPokoju as 'Nr Pokoju', t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc', m.DataPrzyjazdu as 'Zajęty od', m.DataWyjazdu as 'Zajęty do'  from Pobyty m inner join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju where DataWyjazdu > GETDATE()";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Pokoje");
@@ -63,7 +63,7 @@ namespace Hotel
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
             {
-                CmdString = "select p.IdPokoju as 'Nr Pokoju',t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc'  from Pobyty m inner join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju where DataWyjazdu < GETDATE()";
+                CmdString = "select distinct p.IdPokoju as 'Nr Pokoju',t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc'  from Pobyty m inner join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju where DataWyjazdu < GETDATE()";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Pokoje");
@@ -79,7 +79,7 @@ namespace Hotel
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
             {
-                CmdString = "select p.IdPokoju as 'Nr Pokoju',t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc'  from Pobyty m inner join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju";
+                CmdString = "select distinct p.IdPokoju as 'Nr Pokoju',t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc'  from Pobyty m inner join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Pokoje");

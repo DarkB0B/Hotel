@@ -16,6 +16,7 @@ using System.Configuration;
 using System.Collections.Specialized;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections.ObjectModel;
 
 namespace Hotel
 {
@@ -24,10 +25,9 @@ namespace Hotel
     /// </summary>
     public partial class Uslugiwin : Window
     {
-        public Uslugiwin()
+      //  public ObservableCollection<Uslugi> UslugiList { get; set; } = new ObservableCollection<Uslugi>();
+        public void refresh()
         {
-            
-            InitializeComponent();
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
@@ -40,20 +40,36 @@ namespace Hotel
                 grdUslugi.ItemsSource = dt.DefaultView;
             }
         }
+        public Uslugiwin()
+        {
+            
+            InitializeComponent();
+
+
+
+            refresh();
+            /*string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+            string CmdString = string.Empty;
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                CmdString = "select * from Uslugi";
+                SqlCommand cmd = new SqlCommand(CmdString, con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Uslugi");
+                sda.Fill(dt);
+                grdUslugi.ItemsSource = dt.DefaultView;
+            }*/
+            //grdUslugi.ItemsSource = UslugiList;
+        }
 
         private void GoToDodajUsluge_Click(object sender, RoutedEventArgs e)
         {
             
-                DodajUslugewin dodajUslugewin= new DodajUslugewin();
+            DodajUslugewin dodajUslugewin= new DodajUslugewin();
             dodajUslugewin.ShowDialog();
-            
-        }
-        private void UsunUsluge_Click(object sender, RoutedEventArgs e)
-        {
-
-            DodajUslugewin dodajUslugewin = new DodajUslugewin();
-            dodajUslugewin.ShowDialog();
+            refresh();
 
         }
+        
     }
 }

@@ -90,6 +90,9 @@
     <Compile Include="DodajPobytwin.xaml.cs">
       <DependentUpon>DodajPobytwin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajPracownikawin.xaml.cs">
+      <DependentUpon>DodajPracownikawin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DodajUslugewin.xaml.cs">
       <DependentUpon>DodajUslugewin.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DodajPracownikawin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DodajUslugewin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +209,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Klienci.datasource" />
     <None Include="Properties\DataSources\Pobyty.datasource" />
+    <None Include="Properties\DataSources\Pracownicy.datasource" />
     <None Include="Properties\DataSources\Uslugi.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
