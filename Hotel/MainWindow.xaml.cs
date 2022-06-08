@@ -32,7 +32,7 @@ namespace Hotel
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
             {
-                CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu' from Pobyty m  inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where  DataWyjazdu > GETDATE() and DataPrzyjazdu < GETDATE()";
+                CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu', m.IdPobytu as IdRezerwacji from Pobyty m  inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where  DataWyjazdu > GETDATE() and DataPrzyjazdu < GETDATE()";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Pobyty");
@@ -72,7 +72,7 @@ namespace Hotel
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
             {
-                CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu' from Pobyty m  inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where  DataWyjazdu > GETDATE() and DataPrzyjazdu > GETDATE()";
+                CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu', m.IdPobytu as IdRezerwacji from Pobyty m  inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where  DataWyjazdu > GETDATE() and DataPrzyjazdu > GETDATE()";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Pobyty");
@@ -88,7 +88,7 @@ namespace Hotel
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
             {
-                CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu' from Pobyty m  inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where DataPrzyjazdu < GETDATE()";
+                CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu', m.IdPobytu as IdRezerwacji from Pobyty m  inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where DataPrzyjazdu < GETDATE()";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Pobyty");
@@ -104,7 +104,7 @@ namespace Hotel
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
             {
-                CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu' from Pobyty m  inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where  DataWyjazdu > GETDATE() and DataPrzyjazdu < GETDATE()";
+                CmdString = "select k.Imie as 'Imie Klienta', k.Nazwisko as 'Nazwisko Klienta', k.IdKlienta as 'Id Klienta',p.IdPokoju as 'Nr Pokoju',m.DataWyjazdu as 'Data Wyjazdu', u.Usluga 'Wykupiona Usuga', CenaPokoju*(DATEDIFF(day,DataPrzyjazdu,DataWyjazdu))+u.CenaUslugi as 'Cena Pobytu', m.IdPobytu as IdRezerwacji  from Pobyty m inner join pokoje p on m.IdPokoju = P.IdPokoju inner join CenaPokoju c on p.IdCenyPokoju = c.IdCenyPokoju inner join Klienci k on m.IdKlienta = k.IdKlienta inner join Uslugi u on m.IdUslugi = u.IdUslugi where  DataWyjazdu > GETDATE() and DataPrzyjazdu < GETDATE()";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Pobyty");
@@ -144,9 +144,14 @@ namespace Hotel
             
         }
 
-        private void DeleteButton1_Click(object sender, RoutedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            context.Pobyty.Remove(context.Pobyty.Find());
+            DataRowView x = (DataRowView)grdPobyty.SelectedItem;
+            int id = (int)x.Row.ItemArray[7];//
+            var pobyt = context.Pobyty.Find(id);
+            context.Pobyty.Remove(pobyt);
+            context.SaveChanges();
+            refresh();
         }
     }
 }

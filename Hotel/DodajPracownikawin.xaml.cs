@@ -46,8 +46,8 @@ namespace Hotel
 
 
                         int nrpracownika = Convert.ToInt32(nrPracownikaTextBox.Text);
-                        int pesel = Convert.ToInt32(peselPracownikaTextBox.Text);
-                        Pracownicy pracownik = new Pracownicy() { IdPracownika = idPracownika, ImiePracownika = imiePracownikaTextBox.Text, NazwiskoPracownika = nazwiskoPracownikaTextBox.Text, NrPracownika = Convert.ToString(nrpracownika), PeselPracownika = Convert.ToString(pesel) };
+                        
+                        Pracownicy pracownik = new Pracownicy() { IdPracownika = idPracownika, ImiePracownika = imiePracownikaTextBox.Text, NazwiskoPracownika = nazwiskoPracownikaTextBox.Text, NrPracownika = Convert.ToString(nrpracownika), PeselPracownika = peselPracownikaTextBox.Text };
                         context.Pracownicy.Add(pracownik);
                         context.SaveChanges();
 

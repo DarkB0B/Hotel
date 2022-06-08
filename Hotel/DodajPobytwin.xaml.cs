@@ -53,6 +53,7 @@ namespace Hotel
                         {
                             
                             var klient = context.Klienci.SingleOrDefault(item => item.Pesel == peselTextBox.Text);
+                            
                             Pobyty pobyt = new Pobyty() { IdPobytu = idPobytu, DataPrzyjazdu = (DateTime)dataPrzyjazduDatePicker.SelectedDate, DataWyjazdu = (DateTime)dataWyjazduDatePicker.SelectedDate, IdPokoju = Convert.ToInt32(idPokojuTextBox.Text), IdPracownika = Convert.ToInt32(idPracownikaTextBox.Text), IdKlienta = klient.IdKlienta, IdUslugi = usluga.IdUslugi };
                             context.Pobyty.Add(pobyt);
                             context.SaveChanges();
@@ -68,8 +69,9 @@ namespace Hotel
                             
                             Klienci klient = new Klienci() { IdKlienta = idklienta, Imie = imieTextBox.Text, Nazwisko = nazwiskoTextBox.Text, NrKlienta = Convert.ToString(nrklienta), Pesel = peselTextBox.Text };
                             context.Klienci.Add(klient);
+
                             context.SaveChanges();
-                            Pobyty pobyt = new Pobyty() { IdPobytu = idPobytu, DataPrzyjazdu = (DateTime)dataPrzyjazduDatePicker.SelectedDate, DataWyjazdu = (DateTime)dataWyjazduDatePicker.SelectedDate, IdPokoju = Convert.ToInt32(idPokojuTextBox.Text), IdPracownika = Convert.ToInt32(idPracownikaTextBox), IdKlienta = idklienta, IdUslugi = usluga.IdUslugi };
+                            Pobyty pobyt = new Pobyty() { IdPobytu = idPobytu, DataPrzyjazdu = (DateTime)dataPrzyjazduDatePicker.SelectedDate, DataWyjazdu = (DateTime)dataWyjazduDatePicker.SelectedDate, IdPokoju = Convert.ToInt32(idPokojuTextBox.Text), IdPracownika = Convert.ToInt32(idPracownikaTextBox.Text), IdKlienta = klient.IdKlienta, IdUslugi = usluga.IdUslugi };
                             context.Pobyty.Add(pobyt);
                             context.SaveChanges();
 
