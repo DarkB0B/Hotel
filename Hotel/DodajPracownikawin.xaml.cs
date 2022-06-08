@@ -36,8 +36,8 @@ namespace Hotel
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int maxid = context.Pracownicy.Max(x => x.IdPracownika);
-            int idPracownika = maxid + 1;
-            try
+            int idPracownika = maxid + 1; //utworzenie id o 1 większego niż największe id istniejące w bazie
+            try //sprawdzenie czy nr telefonu oraz nr pesel mają właściwą liczbę znaków
             {
                 if (nrPracownikaTextBox.Text.Length == 9)
                 {

@@ -33,7 +33,7 @@ namespace Hotel
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int maxid = context.Pobyty.Max(x => x.IdPobytu);
-            int idPobytu = maxid + 1;
+            int idPobytu = maxid + 1; //utworzenie id o 1 większego niż największe id istniejące w bazie
            
             try
             {
@@ -41,21 +41,21 @@ namespace Hotel
                 {
                     if (peselTextBox.Text.Length == 11)
                     { 
-                        
+                        //utworzenie zmiennych na podstawie podanych danych
                         string nazwauslugi = uslugaComboBox.SelectedItem.ToString();
                         string sidpokoju = nrpokojuComboBox.SelectedItem.ToString();
                         int idpokoju = Convert.ToInt32(sidpokoju);
                         int idpracownika = idPracownikaComboBox.SelectedIndex;
                         var usluga = context.Uslugi.SingleOrDefault(item => item.Usluga == nazwauslugi);
                         
-                        
+                        //przeszukanie bazy czy istnieje klient z podanym numerem pesel
                         List<string> kliencipesel = new List<string>();
                         foreach (var item in context.Klienci)
                         {
                             kliencipesel.Add(item.Pesel);
                             
                         }
-                        if (kliencipesel.Contains(peselTextBox.Text))
+                        if (kliencipesel.Contains(peselTextBox.Text)) // jeśli istnieje już klient z podanym nr pesel zamówienie jest do niego przypisywane
                         {
                             
                             var klient = context.Klienci.SingleOrDefault(item => item.Pesel == peselTextBox.Text);
@@ -66,10 +66,10 @@ namespace Hotel
 
                             this.Close();
                         }
-                        else
+                        else // jeśli nie istnieje klient z podanym nr pesel tworzony jest nowy klient i przypisywana jest do niego rezerwacja
                         {
                             int maxid2 = context.Klienci.Max(x => x.IdKlienta);
-                            int idklienta = maxid2 + 1;
+                            int idklienta = maxid2 + 1; //utworzenie id o 1 większego niż największe id istniejące w bazie
                             int nrklienta = Convert.ToInt32(nrKlientaTextBox.Text);
                            
                             
@@ -121,16 +121,16 @@ namespace Hotel
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            dataPrzyjazduDatePicker.SelectedDate = DateTime.Now;
+            dataPrzyjazduDatePicker.SelectedDate = DateTime.Now; //ustawienie dat na kalendarzu
             dataWyjazduDatePicker.SelectedDate = DateTime.Now;
             List<string> uslugi = new List<string>();
-            foreach (var item in context.Uslugi)
+            foreach (var item in context.Uslugi) //uzupełnienie comboboxa id usług
             {
                 uslugi.Add(item.Usluga);
             }
             uslugaComboBox.ItemsSource = uslugi;
             List<int> pracownicy = new List<int>();
-            foreach (var item in context.Pracownicy)
+            foreach (var item in context.Pracownicy) //uzupełnienie comboboxa numerami pracowników
             {
                 pracownicy.Add(item.IdPracownika);
             }
@@ -139,7 +139,7 @@ namespace Hotel
 
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
-            using (SqlConnection con = new SqlConnection(ConString))
+            using (SqlConnection con = new SqlConnection(ConString)) //uzupełnienie comboboxa numerami pokoi
             {
                 CmdString = "select distinct p.IdPokoju as 'Nr Pokoju',t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc'  from Pobyty m full join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
@@ -151,7 +151,7 @@ namespace Hotel
                 nrpokojuComboBox.ItemsSource = wolnepokoje;
             }
 
-            loadpokoje();
+            loadpokoje(); //uzupełnienie tabeli zarezerwowanych pokoi
             System.Windows.Data.CollectionViewSource pobytyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("pobytyViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // pobytyViewSource.Source = [generic data source]

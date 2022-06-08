@@ -24,7 +24,7 @@ namespace Hotel
     /// </summary>
     public partial class Pokojewin : Window
     {
-        public Pokojewin()
+        public Pokojewin() //przy otwarciu okna uzupelnienie tabeli wszystkimi pokojami
         {
             InitializeComponent();
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
@@ -41,7 +41,7 @@ namespace Hotel
             }
         }
 
-        private void ZajetePokoje_Click(object sender, RoutedEventArgs e)
+        private void ZajetePokoje_Click(object sender, RoutedEventArgs e)// uzupelnienie tabeli zajętymi pokojami
         {
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
@@ -57,7 +57,7 @@ namespace Hotel
             }
         }
         
-        private void WolnePokoje_Click(object sender, RoutedEventArgs e)
+        private void WolnePokoje_Click(object sender, RoutedEventArgs e)// uzupelnienie tabeli wolnymi pokojami
         {
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
@@ -73,7 +73,7 @@ namespace Hotel
             }
         }
 
-        private void WszystkiePokoje_Click(object sender, RoutedEventArgs e)
+        private void WszystkiePokoje_Click(object sender, RoutedEventArgs e)// uzupelnienie tabeli wszystkimi pokojami
         {
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;

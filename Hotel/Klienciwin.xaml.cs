@@ -25,7 +25,7 @@ namespace Hotel
     {
         public Klienciwin()
         {
-            
+            //przy starczie okna tabela uzupelniana jest wszystkimi klientami
             InitializeComponent();
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
@@ -41,7 +41,7 @@ namespace Hotel
             }
         }
 
-        private void WszyscyKlienci_Click(object sender, RoutedEventArgs e)
+        private void WszyscyKlienci_Click(object sender, RoutedEventArgs e) //uzupelnienie tabeli wszystkimi klientami
         {
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
@@ -56,7 +56,7 @@ namespace Hotel
                 Klienci_L.Content = "Wszyscy Klienci";
             }
         }
-        private void AktualniKlienci_Click(object sender, RoutedEventArgs e)
+        private void AktualniKlienci_Click(object sender, RoutedEventArgs e) //uzupelnienie tabeli klientami z aktualną rezerwacją
         {
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;

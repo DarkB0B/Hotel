@@ -24,7 +24,7 @@ namespace Hotel
     /// </summary>
     public partial class Pracownicywin : Window
     {
-        public void refresh()
+        public void refresh() //uzupełnienie tabeli wszyskimi pracownikami
         {
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
@@ -44,7 +44,7 @@ namespace Hotel
             refresh();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e) //otwarcie okna dodawania nowego pracownika
         {
             
 

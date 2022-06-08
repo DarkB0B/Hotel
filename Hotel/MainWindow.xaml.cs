@@ -26,7 +26,7 @@ namespace Hotel
     public partial class MainWindow : Window
     {
         HotelDbEntities context = new HotelDbEntities();
-        public void refresh()
+        public void refresh() //uzupełnienie tabeli aktualnymi pobytami
         {
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
@@ -66,7 +66,7 @@ namespace Hotel
         }
         
         
-        private void Rezerwacje_Click(object sender, RoutedEventArgs e)
+        private void Rezerwacje_Click(object sender, RoutedEventArgs e) //uzupełnienie tabeli tylko rezerwacjami
         {
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
@@ -82,7 +82,7 @@ namespace Hotel
             Pobyty.Content = "Rezerwacje";
         }
         
-        private void HistoriaPobytow_Click(object sender, RoutedEventArgs e)
+        private void HistoriaPobytow_Click(object sender, RoutedEventArgs e) //uzupełnienie tabeli wszystkimi rezerwacjami aktualnymi i archiwalnymi
         {
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
@@ -98,7 +98,7 @@ namespace Hotel
             Pobyty.Content = "HistoriaPobytow";
         }
         
-        private void AktualnePobyty_Click(object sender, RoutedEventArgs e)
+        private void AktualnePobyty_Click(object sender, RoutedEventArgs e) //uzupełnienie tabeli aktualnymi rezerwacjami
         {
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;
@@ -113,27 +113,27 @@ namespace Hotel
             }
             Pobyty.Content = "AktualnePobyty";
         }
-        private void GoToPokoje_Click(object sender, RoutedEventArgs e)
+        private void GoToPokoje_Click(object sender, RoutedEventArgs e) //otwarcie okna pokoi
         {
             Pokojewin pokojewin = new Pokojewin();
             pokojewin.ShowDialog();
         }
-        private void GoToKlienci_Click(object sender, RoutedEventArgs e)
+        private void GoToKlienci_Click(object sender, RoutedEventArgs e) //otwarcie okna klientów
         {
             Klienciwin klienciwin = new Klienciwin();
             klienciwin.ShowDialog();
         }
-        private void GoToPracownicy_Click(object sender, RoutedEventArgs e)
+        private void GoToPracownicy_Click(object sender, RoutedEventArgs e) //otwarcie pracowników
         {
             Pracownicywin pracownicywin = new Pracownicywin();
             pracownicywin.ShowDialog();
         }
-        private void GoToUslugi_Click(object sender, RoutedEventArgs e)
+        private void GoToUslugi_Click(object sender, RoutedEventArgs e) //otwarcie usług
         {
             Uslugiwin uslugiwin = new Uslugiwin();
             uslugiwin.ShowDialog();
         }
-        private void GoToPobyty_Click(object sender, RoutedEventArgs e)
+        private void GoToPobyty_Click(object sender, RoutedEventArgs e) //dodawanie nowej rezerwacji
         {
             DodajPobytwin dodajPobytwin = new DodajPobytwin();
             dodajPobytwin.ShowDialog();
@@ -144,7 +144,7 @@ namespace Hotel
             
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e) //usuniecie wybranej rezerwacji
         {
             DataRowView x = (DataRowView)grdPobyty.SelectedItem;
             int id = (int)x.Row.ItemArray[7];//

@@ -37,13 +37,13 @@ namespace Hotel
             // Load data by setting the CollectionViewSource.Source property:
             // uslugiViewSource.Source = [generic data source]
         }
-        private void Dodaj_Click(object sender, RoutedEventArgs e)
+        private void Dodaj_Click(object sender, RoutedEventArgs e) //dodanie nowej uslugi do bazy danych
         {
             
             try
             {
                 int maxid = context.Uslugi.Max(x => x.IdUslugi);
-                int idUslugi = maxid + 1;
+                int idUslugi = maxid + 1; //utworzenie id o 1 większego niż największe id istniejące w bazie
                 decimal cenaUslugi = Convert.ToDecimal(cenaUslugiTextBox.Text);
                 Uslugi usluga = new Uslugi() { IdUslugi = idUslugi, CenaUslugi = cenaUslugi, Usluga = uslugaTextBox.Text };
                 context.Uslugi.Add(usluga);
