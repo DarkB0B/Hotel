@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Hotel
 {
@@ -40,8 +43,11 @@ namespace Hotel
                     { 
                         
                         string nazwauslugi = uslugaComboBox.SelectedItem.ToString();
+                        string sidpokoju = nrpokojuComboBox.SelectedItem.ToString();
+                        int idpokoju = Convert.ToInt32(sidpokoju);
+                        int idpracownika = idPracownikaComboBox.SelectedIndex;
                         var usluga = context.Uslugi.SingleOrDefault(item => item.Usluga == nazwauslugi);
-
+                        
                         
                         List<string> kliencipesel = new List<string>();
                         foreach (var item in context.Klienci)
@@ -54,7 +60,7 @@ namespace Hotel
                             
                             var klient = context.Klienci.SingleOrDefault(item => item.Pesel == peselTextBox.Text);
                             
-                            Pobyty pobyt = new Pobyty() { IdPobytu = idPobytu, DataPrzyjazdu = (DateTime)dataPrzyjazduDatePicker.SelectedDate, DataWyjazdu = (DateTime)dataWyjazduDatePicker.SelectedDate, IdPokoju = Convert.ToInt32(idPokojuTextBox.Text), IdPracownika = Convert.ToInt32(idPracownikaTextBox.Text), IdKlienta = klient.IdKlienta, IdUslugi = usluga.IdUslugi };
+                            Pobyty pobyt = new Pobyty() { IdPobytu = idPobytu, DataPrzyjazdu = (DateTime)dataPrzyjazduDatePicker.SelectedDate, DataWyjazdu = (DateTime)dataWyjazduDatePicker.SelectedDate, IdPokoju = idpokoju, IdPracownika = idpracownika, IdKlienta = klient.IdKlienta, IdUslugi = usluga.IdUslugi };
                             context.Pobyty.Add(pobyt);
                             context.SaveChanges();
 
@@ -71,7 +77,7 @@ namespace Hotel
                             context.Klienci.Add(klient);
 
                             context.SaveChanges();
-                            Pobyty pobyt = new Pobyty() { IdPobytu = idPobytu, DataPrzyjazdu = (DateTime)dataPrzyjazduDatePicker.SelectedDate, DataWyjazdu = (DateTime)dataWyjazduDatePicker.SelectedDate, IdPokoju = Convert.ToInt32(idPokojuTextBox.Text), IdPracownika = Convert.ToInt32(idPracownikaTextBox.Text), IdKlienta = klient.IdKlienta, IdUslugi = usluga.IdUslugi };
+                            Pobyty pobyt = new Pobyty() { IdPobytu = idPobytu, DataPrzyjazdu = (DateTime)dataPrzyjazduDatePicker.SelectedDate, DataWyjazdu = (DateTime)dataWyjazduDatePicker.SelectedDate, IdPokoju = idpokoju, IdPracownika = idpracownika, IdKlienta = klient.IdKlienta, IdUslugi = usluga.IdUslugi };
                             context.Pobyty.Add(pobyt);
                             context.SaveChanges();
 
@@ -97,6 +103,21 @@ namespace Hotel
                 MessageBox.Show(exception.ToString());
             }
         }
+        public void loadpokoje()
+        {
+            string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+            string CmdString = string.Empty;
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                CmdString = "select distinct p.IdPokoju as 'Nr Pokoju', t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc', m.DataPrzyjazdu as 'Zajęty od', m.DataWyjazdu as 'Zajęty do'  from Pobyty m full join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju where DataWyjazdu > GETDATE()";
+                SqlCommand cmd = new SqlCommand(CmdString, con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Pokoje");
+                sda.Fill(dt);
+                grdPokoje.ItemsSource = dt.DefaultView;
+                
+            }
+        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -108,6 +129,29 @@ namespace Hotel
                 uslugi.Add(item.Usluga);
             }
             uslugaComboBox.ItemsSource = uslugi;
+            List<int> pracownicy = new List<int>();
+            foreach (var item in context.Pracownicy)
+            {
+                pracownicy.Add(item.IdPracownika);
+            }
+            idPracownikaComboBox.ItemsSource = pracownicy;
+
+
+            string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+            string CmdString = string.Empty;
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                CmdString = "select distinct p.IdPokoju as 'Nr Pokoju',t.Typ as 'Typ pokoju', c.CenaPokoju as 'Cena za noc'  from Pobyty m full join Pokoje p on p.IdPokoju = m.IdPokoju inner join TypPokoju t on t.IdTypu = p.IdTypu inner join CenaPokoju c on c.IdCenyPokoju = p.IdCenyPokoju";
+                SqlCommand cmd = new SqlCommand(CmdString, con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Pokoje");
+                sda.Fill(dt);
+                List<string> wolnepokoje;
+                wolnepokoje = (from DataRow row in dt.Rows select row["Nr Pokoju"].ToString()).ToList();
+                nrpokojuComboBox.ItemsSource = wolnepokoje;
+            }
+
+            loadpokoje();
             System.Windows.Data.CollectionViewSource pobytyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("pobytyViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // pobytyViewSource.Source = [generic data source]
@@ -117,5 +161,26 @@ namespace Hotel
         {
 
         }
+        
+        private void nrpokojuComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void idPracownikaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void dataPrzyjazduDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void dataWyjazduDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+       
     }
 }

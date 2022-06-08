@@ -9,7 +9,7 @@
     <Window.Resources>
         <CollectionViewSource x:Key="uslugiViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Uslugi}, CreateList=True}"/>
     </Window.Resources>
-    <Grid Margin="0,0,2,5">
+    <Grid Background="#404752">
         <Grid x:Name="grid1" DataContext="{StaticResource uslugiViewSource}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -20,9 +20,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Cena Uslugi:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <Label Foreground="White" Content="Cena Uslugi:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="cenaUslugiTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding CenaUslugi, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Usluga:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <Label Foreground="White" Content="Usluga:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBox x:Name="uslugaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Usluga, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
         <Button Content="Dodaj" Click="Dodaj_Click" HorizontalAlignment="Left" Margin="80,100,0,0" VerticalAlignment="Top" Width="75"/>
