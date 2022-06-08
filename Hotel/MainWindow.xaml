@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel"
         mc:Ignorable="d"
-        Title="Pobyty" Height="600" Width="851.852" Loaded="Window_Loaded">
+        Title="Pobyty" Height="600" Width="898.447" Loaded="Window_Loaded">
 
     <Window.Resources>
 
@@ -18,7 +18,7 @@
     </Window.Resources>
 
 
-    <Grid Background="#404752"  DataContext="{StaticResource pobytyViewSource}">
+    <Grid Background="#404752"  DataContext="{StaticResource pobytyViewSource}" Margin="0,0,-8,0">
         <Grid Margin="0,58,0,23">
 
             <Grid.RowDefinitions>
@@ -29,7 +29,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <DataGrid Background="#404752" Name="grdPobyty" HorizontalAlignment="Left" Height="322" VerticalAlignment="Top" CanUserAddRows="False" Width="704" SelectionChanged="grdPobyty_SelectionChanged" Margin="130,16,0,0">
+            <DataGrid Background="#404752" Name="grdPobyty" HorizontalAlignment="Left" Height="322" VerticalAlignment="Top" CanUserAddRows="False" Width="751" SelectionChanged="grdPobyty_SelectionChanged" Margin="130,16,0,0">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="55" Header="Usuń">
                         <DataGridTemplateColumn.CellTemplate>
