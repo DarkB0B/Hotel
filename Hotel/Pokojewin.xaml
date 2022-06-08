@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:Hotel"
         mc:Ignorable="d"
         Title="Pokoje" Height="500" Width="650">
-    <Grid Margin="0,10,2,0">
+    <Grid Background="#404752" Margin="0,10,2,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Name="grdPokoje" Height="362" Margin="159,53,10,0" VerticalAlignment="Top"/>
-        <Label Content="" x:Name="Pokoje_L" HorizontalAlignment="Left" Margin="320,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.843,-0.707" FontSize="18" Height="34" Width="221">
+        <DataGrid  Background="#404752" Name="grdPokoje" Height="362" Margin="159,53,10,0" VerticalAlignment="Top"/>
+        <Label Foreground="White" Content="" x:Name="Pokoje_L" HorizontalAlignment="Left" Margin="320,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.843,-0.707" FontSize="18" Height="34" Width="221">
         </Label>
         <Button Content="Zajęte Pokoje" Click="ZajetePokoje_Click" HorizontalAlignment="Left" Margin="22,256,0,0" VerticalAlignment="Top" Width="109" Height="24"/>
         <Button Content="Wolne Pokoje" Click="WolnePokoje_Click" HorizontalAlignment="Left" Margin="22,142,0,0" VerticalAlignment="Top" Width="109" Height="24"/>

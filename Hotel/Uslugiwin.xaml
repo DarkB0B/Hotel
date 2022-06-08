@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Hotel"
         mc:Ignorable="d"
         Title="Uslugi" Height="295.767" Width="346.032">
-    <Grid>
-        <DataGrid Name="grdUslugi" Height="221" Margin="1,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="338">
+    <Grid Background="#404752">
+        <DataGrid Background="#404752" Name="grdUslugi" Height="221" Margin="1,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="338">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -17,7 +17,7 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
         </DataGrid>
-        <Label  Content="Usługi" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="3.043,1.277" Margin="135,5,0,0" FontSize="18"/>
+        <Label  Foreground="White" Content="Usługi" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="3.043,1.277" Margin="135,5,0,0" FontSize="18"/>
         <Button x:Name="GoToDodajUsluge" Content="Dodaj" Click="GoToDodajUsluge_Click" HorizontalAlignment="Left" Margin="238,14,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>

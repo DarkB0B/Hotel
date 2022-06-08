@@ -25,6 +25,7 @@ namespace Hotel
     {
         public Klienciwin()
         {
+            
             InitializeComponent();
             string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
             string CmdString = string.Empty;

@@ -108,7 +108,7 @@ namespace Hotel
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Pobyty");
-                sda.Fill(dt);
+                sda.Fill(dt);              
                 grdPobyty.ItemsSource = dt.DefaultView;
             }
             Pobyty.Content = "AktualnePobyty";
@@ -142,6 +142,11 @@ namespace Hotel
         private void grdPobyty_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
+        }
+
+        private void DeleteButton1_Click(object sender, RoutedEventArgs e)
+        {
+            context.Pobyty.Remove(context.Pobyty.Find());
         }
     }
 }
